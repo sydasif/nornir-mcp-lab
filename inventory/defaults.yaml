@@ -1,0 +1,6 @@
+---
+username: admin
+password: admin
+connection_options:
+  napalm:
+    timeout: 60

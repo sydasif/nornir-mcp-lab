@@ -1,0 +1,6 @@
+---
+cisco_switch:
+  platform: ios
+
+cisco_router:
+  platform: eos

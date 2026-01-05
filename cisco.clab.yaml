@@ -1,0 +1,26 @@
+---
+name: cisco_lab
+
+mgmt:
+  ipv4-subnet: 192.168.10.0/24
+
+topology:
+  nodes:
+    r1:
+      kind: arista_ceos
+      image: asifsyd/ceos:4.32.0F
+      mgmt-ipv4: 192.168.10.10
+    s1:
+      kind: cisco_iol
+      image: asifsyd/cisco_iol:l2-17.12.01
+      mgmt-ipv4: 192.168.10.11
+      type: l2
+    s2:
+      kind: cisco_iol
+      image: asifsyd/cisco_iol:l2-17.12.01
+      mgmt-ipv4: 192.168.10.12
+      type: l2
+
+  links:
+    - endpoints: ["r1:eth1", "s1:eth1"]
+    - endpoints: ["r1:eth2", "s2:eth1"]

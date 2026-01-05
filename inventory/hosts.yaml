@@ -1,0 +1,14 @@
+---
+# Nornir Hosts Configuration
+R1:
+  hostname: 192.168.10.10
+  groups:
+    - cisco_router
+S1:
+  hostname: 192.168.10.11
+  groups:
+    - cisco_switch
+S2:
+  hostname: 192.168.10.12
+  groups:
+    - cisco_switch
