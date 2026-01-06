@@ -1,6 +1,6 @@
 ---
-cisco_switch:
+cisco:
   platform: ios
 
-cisco_router:
+arista:
   platform: eos

@@ -3,12 +3,12 @@
 R1:
   hostname: 192.168.10.10
   groups:
-    - cisco_router
+    - arista
 S1:
   hostname: 192.168.10.11
   groups:
-    - cisco_switch
+    - cisco
 S2:
   hostname: 192.168.10.12
   groups:
-    - cisco_switch
+    - cisco
