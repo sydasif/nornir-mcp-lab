@@ -4,4 +4,6 @@ password: admin
 
 connection_options:
   napalm:
-    timeout: 60
+    timeout: 30
+  netmiko:
+    conn_timeout: 30
