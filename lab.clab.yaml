@@ -20,7 +20,12 @@ topology:
       image: asifsyd/cisco_iol:l2-17.12.01
       mgmt-ipv4: 192.168.10.12
       type: l2
+    ubuntu:
+      kind: generic_vm
+      image: vrnetlab/canonical_ubuntu:jammy
+      mgmt-ipv4: 192.168.10.13
 
   links:
     - endpoints: ["r1:eth1", "s1:eth1"]
     - endpoints: ["r1:eth2", "s2:eth1"]
+    - endpoints: ["r1:eth3", "ubuntu:eth1"]

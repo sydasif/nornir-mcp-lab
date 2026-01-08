@@ -1,6 +1,8 @@
 ---
 cisco:
   platform: ios
-
 arista:
   platform: eos
+ubuntu:
+  username: clab
+  password: clab@123
