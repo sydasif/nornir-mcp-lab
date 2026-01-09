@@ -4,5 +4,4 @@ cisco:
 arista:
   platform: eos
 ubuntu:
-  username: clab
-  password: clab@123
+  platform: linux
