@@ -13,4 +13,4 @@ runner:
     num_workers: 5
 
 logging:
-  enabled: true
+  enabled: false
