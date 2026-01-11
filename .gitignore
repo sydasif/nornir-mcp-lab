@@ -2,3 +2,4 @@
 clab-*
 *.log
 .mcp.json
+backups/
