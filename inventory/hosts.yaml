@@ -12,9 +12,3 @@ S2:
   hostname: 192.168.10.12
   groups:
     - cisco
-U22s:
-  hostname: 192.168.10.13
-  username: clab
-  password: clab@123
-  groups:
-    - ubuntu

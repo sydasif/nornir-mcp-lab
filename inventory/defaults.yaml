@@ -1,9 +1,3 @@
 ---
 username: admin
 password: admin
-
-connection_options:
-  napalm:
-    timeout: 30
-  netmiko:
-    conn_timeout: 30

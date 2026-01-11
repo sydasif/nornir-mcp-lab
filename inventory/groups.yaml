@@ -3,5 +3,3 @@ cisco:
   platform: ios
 arista:
   platform: eos
-ubuntu:
-  platform: linux
