@@ -1,6 +1,6 @@
 ---
-username: "${NR_NORNIR_USERNAME}"
-password: "${NR_NORNIR_PASSWORD}"
+username: admin
+password: admin
 port: 22
 platform: ""
 connection_options:
