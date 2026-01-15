@@ -1,17 +1,15 @@
 ---
 cisco:
+  platform: ios
   connection_options:
-    napalm:
-      platform: ios
     netmiko:
       platform: cisco_ios
       extras:
         conn_timeout: 10
         banner_timeout: 20
 arista:
+  platform: eos
   connection_options:
-    napalm:
-      platform: eos
     netmiko:
       platform: arista_eos
       extras:
