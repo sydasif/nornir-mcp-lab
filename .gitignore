@@ -3,3 +3,4 @@ clab-*
 *.log
 .mcp.json
 backups/
+.env

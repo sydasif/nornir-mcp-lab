@@ -4,11 +4,23 @@ R1:
   hostname: 192.168.10.10
   groups:
     - arista
+  data:
+    role: router
+    site: lab
+    os_version: "4.32.0F"
 S1:
   hostname: 192.168.10.11
   groups:
     - cisco
+  data:
+    role: switch
+    site: lab
+    os_version: "17.12.01"
 S2:
   hostname: 192.168.10.12
   groups:
     - cisco
+  data:
+    role: switch
+    site: lab
+    os_version: "17.12.01"

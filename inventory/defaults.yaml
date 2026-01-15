@@ -1,3 +1,18 @@
 ---
-username: admin
-password: admin
+username: "${NR_NORNIR_USERNAME}"
+password: "${NR_NORNIR_PASSWORD}"
+port: 22
+platform: ""
+connection_options:
+  napalm:
+    extras:
+      optional_args:
+        transport: ssh
+  netmiko:
+    extras:
+      conn_timeout: 10
+      banner_timeout: 20
+  paramiko:
+    extras:
+      allow_agent: false
+      look_for_keys: false
