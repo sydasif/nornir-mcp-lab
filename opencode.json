@@ -1,0 +1,11 @@
+{
+  "mcp": {
+    "nornir": {
+      "type": "local",
+      "command": [
+        "nornir-mcp"
+      ]
+    }
+  },
+  "$schema": "https://opencode.ai/config.json"
+}
