@@ -10,8 +10,9 @@ Enterprise-grade network lab automation using Containerlab and Nornir, controlla
 
 This project provides a reproducible network topology for testing and automation, featuring:
 
-- **1 Arista cEOS Router** (R1) - EOS 4.32.0F
-- **2 Cisco IOL Switches** (S1, S2) - IOS-XE 17.15.1
+- **1 Cisco CSR1000v Router** (R1) - IOS-XE 17.3.5
+- **1 Arista cEOS Switch** (S1) - EOS 4.32.0F
+- **1 Cisco IOL Switch** (S2) - IOS-XE 17.15.1
 
 The environment is designed for network automation testing with support for multi-vendor configurations.
 
@@ -35,8 +36,8 @@ The environment is designed for network automation testing with support for mult
 
 | Device | Hostname      | IP Address      | Platform    | OS Version  |
 |--------|---------------|-----------------|-------------|-------------|
-| Router | r1            | 192.168.10.10   | arista_eos  | 4.32.0F     |
-| Switch | s1            | 192.168.10.11   | cisco_ios   | 17.15.1     |
+| Router | r1            | 192.168.10.11   | cisco_ios   | 17.3.5      |
+| Switch | s1            | 192.168.10.10   | arista_eos  | 4.32.0F     |
 | Switch | s2            | 192.168.10.12   | cisco_ios   | 17.15.1     |
 
 ## Prerequisites
@@ -75,15 +76,15 @@ containerlab inspect -t lab.clab.yaml
 
 ```bash
 # Enable eAPI on Arista devices (required for NAPALM)
-docker exec clab-cisco_lab-r1 bash -c "echo -e 'enable\nconfigure\nmanagement api http-commands\nno shut' | /usr/bin/Cli"
+docker exec clab-cisco_lab-s1 bash -c "echo -e 'enable\nconfigure\nmanagement api http-commands\nno shut' | /usr/bin/Cli"
 ```
 
 ### 3. Verify Connectivity
 
 ```bash
 # Test SSH connectivity
-ssh admin@192.168.10.10   # R1
-ssh admin@192.168.10.11   # S1
+ssh admin@192.168.10.11   # R1
+ssh admin@192.168.10.10   # S1
 ssh admin@192.168.10.12   # S2
 
 # Default credentials: admin/admin
@@ -134,8 +135,8 @@ All tools support filtering by:
 **hosts.yaml** - Individual device parameters:
 ```yaml
 R1:
-  hostname: 192.168.10.10
-  groups: [arista]
+  hostname: 192.168.10.11
+  groups: [cisco]
   data:
     role: router
     site: lab
@@ -170,10 +171,10 @@ docker ps | grep clab-
 docker logs clab-cisco_lab-r1
 
 # Test network connectivity
-ping 192.168.10.10
+ping 192.168.10.11
 
 # Check SSH access
-ssh -v admin@192.168.10.10
+ssh -v admin@192.168.10.11
 ```
 
 ### Lab Management

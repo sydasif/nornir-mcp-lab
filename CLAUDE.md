@@ -14,7 +14,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Device Configuration
 
 - Enable Arista eAPI (required for NAPALM):
-  `docker exec clab-cisco_lab-r1 bash -c "echo -e 'enable\nconfigure\nmanagement api http-commands\nno shut' | /usr/bin/Cli"`
+  `docker exec clab-cisco_lab-s1 bash -c "echo -e 'enable\nconfigure\nmanagement api http-commands\nno shut' | /usr/bin/Cli"`
 
 ### Environment Setup
 
@@ -26,21 +26,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Overview
 
-The project defines a network topology consisting of one Arista cEOS router (R1) and two Cisco IOL switches (S1, S2), managed by Nornir and deployed via Containerlab.
+The project defines a network topology consisting of one Cisco CSR1000v router (R1) and two switches: an Arista cEOS switch (S1) and a Cisco IOL switch (S2), managed by Nornir and deployed via Containerlab.
 
 ### Key Components
 
 - **Topology Definition**: `lab.clab.yaml` defines the Containerlab layout and node images.
 - **Nornir Configuration**: `config.yaml` contains the Nornir settings.
-- **Inventory System**: Located in `inventory/`
-      - `hosts.yaml`: Individual device definitions (IPs, groups, roles).
-      - `groups.yaml`: Platform-specific settings (OS type, connection options).
-      - `defaults.yaml`: Global defaults and credentials.
+- **Inventory System**: Located in `inventory/` - `hosts.yaml`: Individual device definitions (IPs, groups, roles). - `groups.yaml`: Platform-specific settings (OS type, connection options). - `defaults.yaml`: Global defaults and credentials.
 - **Artifacts**: `backups/` stores configuration backups retrieved from devices.
 
 ### Network Layout
 
 - Management Network: `192.168.10.0/24`
-- R1 (Arista cEOS): `192.168.10.10`
-- S1 (Cisco IOL): `192.168.10.11`
+- R1 (Cisco CSR1000v): `192.168.10.11`
+- S1 (Arista cEOS): `192.168.10.10`
 - S2 (Cisco IOL): `192.168.10.12`

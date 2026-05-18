@@ -1,5 +1,5 @@
 ---
-name: cisco_lab
+name: lab
 
 mgmt:
   ipv4-subnet: 192.168.10.0/24
@@ -9,11 +9,11 @@ topology:
     r1:
       kind: cisco_csr1000v
       image: vrnetlab/cisco_csr1000v:17.03.05
-      mgmt-ipv4: 192.168.10.11
+      mgmt-ipv4: 192.168.10.10
     s1:
       kind: arista_ceos
       image: asifsyd/ceos:4.32.0F
-      mgmt-ipv4: 192.168.10.10
+      mgmt-ipv4: 192.168.10.11
     s2:
       kind: cisco_iol
       image: asifsyd/cisco_iol:l2-17.12.01
@@ -22,4 +22,4 @@ topology:
 
   links:
     - endpoints: [ "r1:eth1", "s1:eth1" ]
-    - endpoints: [ "r1:eth2", "s2:eth1" ]
+    - endpoints: [ "s1:eth2", "s2:eth1" ]
