@@ -26,7 +26,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Overview
 
-The project defines a network topology consisting of one Cisco CSR1000v router (R1) and two switches: an Arista cEOS switch (S1) and a Cisco IOL switch (S2), managed by Nornir and deployed via Containerlab.
+The project defines a network topology consisting of one Cisco CSR1000v router (R1) and one switch: an Arista cEOS switch (S1), managed by Nornir and deployed via Containerlab.
 
 ### Key Components
 
@@ -38,6 +38,5 @@ The project defines a network topology consisting of one Cisco CSR1000v router (
 ### Network Layout
 
 - Management Network: `192.168.10.0/24`
-- R1 (Cisco CSR1000v): `192.168.10.11`
-- S1 (Arista cEOS): `192.168.10.10`
-- S2 (Cisco IOL): `192.168.10.12`
+- R1 (Cisco CSR1000v): `192.168.10.10`
+- S1 (Arista cEOS): `192.168.10.11`

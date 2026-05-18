@@ -1,22 +1,15 @@
 ---
 R1:
-  hostname: 192.168.10.11
+  hostname: 192.168.10.10
   groups:
     - cisco
   data:
     role: router
     site: lab
 S1:
-  hostname: 192.168.10.10
+  hostname: 192.168.10.11
   groups:
     - arista
-  data:
-    role: switch
-    site: lab
-S2:
-  hostname: 192.168.10.12
-  groups:
-    - cisco
   data:
     role: switch
     site: lab

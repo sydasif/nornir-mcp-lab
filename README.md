@@ -12,7 +12,6 @@ This project provides a reproducible network topology for testing and automation
 
 - **1 Cisco CSR1000v Router** (R1) - IOS-XE 17.3.5
 - **1 Arista cEOS Switch** (S1) - EOS 4.32.0F
-- **1 Cisco IOL Switch** (S2) - IOS-XE 17.15.1
 
 The environment is designed for network automation testing with support for multi-vendor configurations.
 
@@ -24,10 +23,10 @@ The environment is designed for network automation testing with support for mult
                     │                                 │
               ┌─────┴─────┐                           │
               │           │                           │
-           ┌──┴───┐   ┌──┴───┐                   ┌───┴───┐
-           │  R1  │   │  S1  │───────────────────│  S2   │
-           │ cEOS │   │ IOL  │                   │  IOL  │
-           └──┬───┘   └──┬───┘                   └───┬───┘
+           ┌──┴───┐   ┌──┴───┐                        │
+           │  R1  │   │  S1  │                        │
+           │ IOS  │   │ EOS  │                        │
+           └──┬───┘   └──┬───┘                        │
               │           │                           │
               └───────────┴───────────────────────────┘
 ```
@@ -36,9 +35,8 @@ The environment is designed for network automation testing with support for mult
 
 | Device | Hostname      | IP Address      | Platform    | OS Version  |
 |--------|---------------|-----------------|-------------|-------------|
-| Router | r1            | 192.168.10.11   | cisco_ios   | 17.3.5      |
-| Switch | s1            | 192.168.10.10   | arista_eos  | 4.32.0F     |
-| Switch | s2            | 192.168.10.12   | cisco_ios   | 17.15.1     |
+| Router | r1            | 192.168.10.10   | cisco_ios   | 17.3.5      |
+| Switch | s1            | 192.168.10.11   | arista_eos  | 4.32.0F     |
 
 ## Prerequisites
 
@@ -83,9 +81,8 @@ docker exec clab-cisco_lab-s1 bash -c "echo -e 'enable\nconfigure\nmanagement ap
 
 ```bash
 # Test SSH connectivity
-ssh admin@192.168.10.11   # R1
-ssh admin@192.168.10.10   # S1
-ssh admin@192.168.10.12   # S2
+ssh admin@192.168.10.10   # R1
+ssh admin@192.168.10.11   # S1
 
 # Default credentials: admin/admin
 ```
