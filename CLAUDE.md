@@ -2,46 +2,45 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## 1. Overview
-This repository is a network lab automation environment using **Containerlab** for topology deployment and **Nornir** for automation tasks. It is designed to be used with MCP (Model Context Protocol) tools to allow LLM-based assistants to interact with the network devices.
+## Common Commands
 
-## 2. Architecture
-- **Topology Management:** `lab.clab.yaml` defines the Containerlab topology.
-- **Network Automation:** Nornir is used to manage and configure devices.
-- **Inventory:** Managed via Nornir's `SimpleInventory` plugin:
-  - `inventory/hosts.yaml`: Individual device definitions.
-  - `inventory/groups.yaml`: Group and platform-specific configurations.
-  - `inventory/defaults.yaml`: Global credentials and defaults.
-- **Configuration:** `config.yaml` contains the Nornir configuration.
-- **Devices:**
-  - **R1:** Arista cEOS router (IP: 192.168.10.10).
-  - **S1, S2:** Cisco IOL switches (IPs: 192.168.10.11, 192.168.10.12).
+### Lab Management (Containerlab)
 
-## 3. Common Commands
+- Deploy lab: `containerlab deploy -t lab.clab.yaml`
+- Inspect lab: `containerlab inspect -t lab.clab.yaml`
+- Destroy lab: `containerlab destroy -t lab.clab.yaml`
+- Redeploy lab: `containerlab redeploy -t lab.clab.yaml`
 
-### Lab Deployment (Containerlab)
-- **Deploy lab:** `containerlab deploy -t lab.clab.yaml`
-- **Verify deployment:** `containerlab inspect -t lab.clab.yaml`
-- **Destroy lab:** `containerlab destroy -t lab.clab.yaml`
-- **Redeploy lab:** `containerlab redeploy -t lab.clab.yaml`
+### Device Configuration
 
-### Device Management
-- **Enable eAPI on R1 (Arista):**
-  ```bash
-  docker exec clab-cisco_lab-r1 bash -c "echo -e 'enable\nconfigure\nmanagement api http-commands\nno shut' | /usr/bin/Cli"
-  ```
-- **Check container status:** `docker ps | grep clab-`
-- **View container logs:** `docker logs clab-cisco_lab-r1`
+- Enable Arista eAPI (required for NAPALM):
+  `docker exec clab-cisco_lab-r1 bash -c "echo -e 'enable\nconfigure\nmanagement api http-commands\nno shut' | /usr/bin/Cli"`
 
-### Nornir/Python (if running locally)
-- Ensure Nornir dependencies are installed: `nornir`, `nornir-napalm`, `nornir-netmiko`, `netmiko`, `napalm`, `pyyaml`.
-- Use environment variables for credentials:
-  ```bash
-  export NR_NORNIR_USERNAME=admin
-  export NR_NORNIR_PASSWORD=admin
-  ```
+### Environment Setup
 
-## 4. Troubleshooting
-- **Arista eAPI error:** Ensure eAPI is enabled on R1 via the `docker exec` command above.
-- **Authentication failed:** Check `inventory/defaults.yaml` or environment variables.
-- **Connection timeouts:** Check `inventory/groups.yaml` for `conn_timeout` settings.
+- Set Nornir credentials:
+  `export NR_NORNIR_USERNAME=admin`
+  `export NR_NORNIR_PASSWORD=admin`
+
+## Architecture & Structure
+
+### Overview
+
+The project defines a network topology consisting of one Arista cEOS router (R1) and two Cisco IOL switches (S1, S2), managed by Nornir and deployed via Containerlab.
+
+### Key Components
+
+- **Topology Definition**: `lab.clab.yaml` defines the Containerlab layout and node images.
+- **Nornir Configuration**: `config.yaml` contains the Nornir settings.
+- **Inventory System**: Located in `inventory/`
+      - `hosts.yaml`: Individual device definitions (IPs, groups, roles).
+      - `groups.yaml`: Platform-specific settings (OS type, connection options).
+      - `defaults.yaml`: Global defaults and credentials.
+- **Artifacts**: `backups/` stores configuration backups retrieved from devices.
+
+### Network Layout
+
+- Management Network: `192.168.10.0/24`
+- R1 (Arista cEOS): `192.168.10.10`
+- S1 (Cisco IOL): `192.168.10.11`
+- S2 (Cisco IOL): `192.168.10.12`
