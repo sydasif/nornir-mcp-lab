@@ -11,17 +11,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Destroy lab: `containerlab destroy -t lab.clab.yaml`
 - Redeploy lab: `containerlab redeploy -t lab.clab.yaml`
 
-### Device Configuration
-
-- Enable eAPI on CSR1000v (required for NAPALM; cEOS enables it by default):
-  `docker exec clab-cisco_lab-r1 bash -c "echo -e 'enable\nconfigure\nmanagement api http-commands\nno shut' | /usr/bin/Cli"`
-
-### Environment Setup
-
-- Set Nornir credentials:
-  `export NR_NORNIR_USERNAME=admin`
-  `export NR_NORNIR_PASSWORD=admin`
-
 ## Architecture & Structure
 
 ### Overview
@@ -56,20 +45,3 @@ The Arista cEOS uses a different mapping scheme between Containerlab `ethX` inte
 - `eth0` $\rightarrow$ `Management0`/`Management1` (Management) — inherits Docker-assigned IP
 - `eth1` $\rightarrow$ `Ethernet1` (First data port)
 - `eth2+` $\rightarrow$ `Ethernet2+` (Subsequent data ports)
-
-**User-defined mapping** (cEOS >= 4.28.0F):
-Bind a custom JSON file to `/mnt/flash/EosIntfMapping.json` via `binds`:
-
-```json
-{
-  "ManagementIntf": { "eth0": "Management1" },
-  "EthernetIntf": {
-    "eth1": "Ethernet1/1",
-    "eth2": "Ethernet2/1"
-  }
-}
-```
-
-**`INTFTYPE=et`**: Set this env var to use `et` naming (e.g., `et1`, `et2`) instead of `eth`.
-
-**Underscore naming**: Use underscores for breakout-style names (e.g., `eth1_1` \rightarrow `Ethernet1/1`). Incompatible with user-defined mapping.
