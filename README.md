@@ -6,6 +6,8 @@
 
 Enterprise-grade network lab automation using Containerlab and Nornir, controllable via MCP (Model Context Protocol).
 
+This lab is used to test the [Nornir MCP Server](https://github.com/sydasif/nornir-mcp-server) after any new changes.
+
 ## Overview
 
 This project provides a reproducible network topology for testing and automation, featuring:
@@ -33,19 +35,19 @@ The environment is designed for network automation testing with support for mult
 
 ### Management IP Addresses
 
-| Device | Hostname      | IP Address      | Platform    | OS Version  |
-|--------|---------------|-----------------|-------------|-------------|
-| Router | r1            | 192.168.10.10   | cisco_ios   | 17.3.5      |
-| Switch | s1            | 192.168.10.11   | arista_eos  | 4.32.0F     |
+| Device | Hostname | IP Address    | Platform   | OS Version |
+| ------ | -------- | ------------- | ---------- | ---------- |
+| Router | r1       | 192.168.10.10 | cisco_ios  | 17.3.5     |
+| Switch | s1       | 192.168.10.11 | arista_eos | 4.32.0F    |
 
 ## Prerequisites
 
-| Requirement | Version | Description |
-|-------------|---------|-------------|
-| Containerlab | 0.50+ | Lab topology deployment |
-| Docker | 20.10+ | Container runtime |
-| Python | 3.11+ | Runtime environment |
-| Docker Compose | 2.0+ | Container orchestration |
+| Requirement    | Version | Description             |
+| -------------- | ------- | ----------------------- |
+| Containerlab   | 0.50+   | Lab topology deployment |
+| Docker         | 20.10+  | Container runtime       |
+| Python         | 3.11+   | Runtime environment     |
+| Docker Compose | 2.0+    | Container orchestration |
 
 ### Python Dependencies
 
@@ -93,22 +95,23 @@ This project exposes Nornir functionality via MCP (Model Context Protocol) for i
 
 ### Available Tools
 
-| Tool | Description | Filters |
-|------|-------------|---------|
-| `get_device_facts` | Retrieve device information (vendor, OS, uptime) | hostname, group, platform |
-| `list_network_devices` | List inventory with details | query_type, details |
-| `get_interfaces` | Get interface status and details | hostname, group, platform |
-| `get_interfaces_ip` | Get IP addressing information | hostname, group, platform |
-| `get_device_configs` | Retrieve running/startup configs | hostname, group, platform |
-| `get_bgp_neighbors` | Get BGP neighbor information | hostname, group, platform |
-| `run_show_commands` | Execute show commands via SSH | hostname, group, platform |
-| `send_config_commands` | Send configuration changes | hostname, group, platform |
-| `backup_device_configs` | Save configs to local disk | hostname, group, platform |
-| `run_napalm_getter` | Execute NAPALM getters | getters, getters_options |
+| Tool                    | Description                                      | Filters                   |
+| ----------------------- | ------------------------------------------------ | ------------------------- |
+| `get_device_facts`      | Retrieve device information (vendor, OS, uptime) | hostname, group, platform |
+| `list_network_devices`  | List inventory with details                      | query_type, details       |
+| `get_interfaces`        | Get interface status and details                 | hostname, group, platform |
+| `get_interfaces_ip`     | Get IP addressing information                    | hostname, group, platform |
+| `get_device_configs`    | Retrieve running/startup configs                 | hostname, group, platform |
+| `get_bgp_neighbors`     | Get BGP neighbor information                     | hostname, group, platform |
+| `run_show_commands`     | Execute show commands via SSH                    | hostname, group, platform |
+| `send_config_commands`  | Send configuration changes                       | hostname, group, platform |
+| `backup_device_configs` | Save configs to local disk                       | hostname, group, platform |
+| `run_napalm_getter`     | Execute NAPALM getters                           | getters, getters_options  |
 
 ### Filter Parameters
 
 All tools support filtering by:
+
 - `hostname`: Specific device IP address
 - `group`: Device group (e.g., `cisco`, `arista`)
 - `platform`: Network OS type (e.g., `eos`, `ios`)
@@ -130,6 +133,7 @@ All tools support filtering by:
 ### Inventory Configuration
 
 **hosts.yaml** - Individual device parameters:
+
 ```yaml
 R1:
   hostname: 192.168.10.11
@@ -140,6 +144,7 @@ R1:
 ```
 
 **groups.yaml** - Platform-specific settings:
+
 ```yaml
 cisco:
   platform: ios
@@ -151,6 +156,7 @@ cisco:
 ```
 
 **defaults.yaml** - Global credentials:
+
 ```yaml
 username: admin
 password: admin
@@ -190,12 +196,12 @@ docker system prune -f
 
 ### Common Issues
 
-| Issue | Solution |
-|-------|----------|
-| eAPI connection refused (Arista) | Enable with `management api http-commands` |
-| Authentication failed | Set `NR_NORNIR_USERNAME` and `NR_NORNIR_PASSWORD` |
-| Container not found | Run `containerlab deploy -t lab.clab.yaml` |
-| Timeout errors | Increase `conn_timeout` in groups.yaml |
+| Issue                            | Solution                                          |
+| -------------------------------- | ------------------------------------------------- |
+| eAPI connection refused (Arista) | Enable with `management api http-commands`        |
+| Authentication failed            | Set `NR_NORNIR_USERNAME` and `NR_NORNIR_PASSWORD` |
+| Container not found              | Run `containerlab deploy -t lab.clab.yaml`        |
+| Timeout errors                   | Increase `conn_timeout` in groups.yaml            |
 
 ## Security
 
