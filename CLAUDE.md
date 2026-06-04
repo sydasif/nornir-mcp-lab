@@ -11,6 +11,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Destroy lab: `containerlab destroy -t lab.clab.yaml`
 - Redeploy lab: `containerlab redeploy -t lab.clab.yaml`
 
+## Companion Projects
+
+- **net-tool** (`/home/zulu/Documents/net-tool`): The Nornir-NAPALM FastMCP server this lab exercises. Its `.mcp.json` registers the server from that project. Run `uv run pytest` there for unit tests; use this lab for integration tests against live devices.
+
 ## Architecture & Structure
 
 ### Overview
